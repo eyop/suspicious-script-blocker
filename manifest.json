@@ -2,12 +2,16 @@
     "manifest_version": 3,
     "name": "Suspicious Script Blocker",
     "version": "1.0",
-    "description": "Detects and blocks suspicious inline scripts in web pages.",
-    "options_page": "options.html",
+    "description": "Detects and blocks suspicious inline scripts in web pages to enhance your browsing security.",
+
     "permissions": [
-      "scripting",
-      "tabs",
-      "storage"
+        "storage",
+        "activeTab",
+        "webRequest",
+        "webRequestBlocking",
+        "tabs",
+        "http://*/",
+        "https://*/"
     ],
     "host_permissions": [
       "<all_urls>"
@@ -15,23 +19,28 @@
     "background": {
       "service_worker": "background.js"
     },
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "128": "icons/icon128.png"
-       
-      },
-       "default_title": "Suspicious Script Blocker"
-    },
-    "icons": {
-      "128": "icons/icon128.png"
-    },
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content.js"],
-        "run_at": "document_start"
+        "js": ["content.js"]
+        
       }
-    ]
+    ],
+    "options_page": "options.html",
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+       
+      }
+    
+    },
+    "icons": {
+        "16": "icons/icon16.png", 
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
   }
   
