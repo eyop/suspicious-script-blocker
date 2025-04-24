@@ -1,3 +1,5 @@
+let warningInjected = false;
+
 function isSuspicious(scriptContent) {
     const suspiciousPatterns = [
       /eval\(/,
@@ -19,7 +21,33 @@ function isSuspicious(scriptContent) {
     } catch {
       return "";
     }
-    }  
+    } 
+    
+    function injectWarningBanner() {
+        if (warningInjected) return;
+        warningInjected = true;
+      
+        const banner = document.createElement("div");
+        banner.innerHTML = "⚠️ Suspicious inline scripts were blocked on this page.";
+        banner.style.position = "fixed";
+        banner.style.top = "0";
+        banner.style.left = "0";
+        banner.style.right = "0";
+        banner.style.backgroundColor = "#e74c3c";
+        banner.style.color = "white";
+        banner.style.padding = "10px";
+        banner.style.zIndex = "9999";
+        banner.style.fontSize = "14px";
+        banner.style.textAlign = "center";
+        banner.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+        banner.style.fontFamily = "sans-serif";
+      
+        document.body.appendChild(banner);
+      
+        // Optional: auto-hide after 5 seconds
+        setTimeout(() => banner.remove(), 5000);
+      }
+      
   function scanScripts() {
 
     chrome.storage.local.get("whitelist", (data) => {
