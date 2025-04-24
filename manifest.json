@@ -3,7 +3,6 @@
     "name": "Suspicious Script Blocker",
     "version": "1.0",
     "description": "Detects and blocks suspicious inline scripts in web pages.",
-    "author": "eyop",
     "options_page": "options.html",
     "permissions": [
       "scripting",
@@ -19,9 +18,10 @@
     "action": {
       "default_popup": "popup.html",
       "default_icon": {
-        "128": "icons/icon128.png",
-        "default_title": "Suspicious Script Blocker"
-      }
+        "128": "icons/icon128.png"
+       
+      },
+       "default_title": "Suspicious Script Blocker"
     },
     "icons": {
       "128": "icons/icon128.png"
