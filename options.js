@@ -49,3 +49,39 @@ input.addEventListener("keyup", (e) => {
 });
 
 loadWhitelist();
+document.getElementById("exportBtn").addEventListener("click", () => {
+    chrome.storage.local.get(["whitelist", "suspiciousScripts"], (data) => {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "script-blocker-backup.json";
+      a.click();
+  
+      URL.revokeObjectURL(url);
+    });
+  });
+  
+  document.getElementById("importInput").addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+  
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const importedData = JSON.parse(reader.result);
+        const whitelist = Array.isArray(importedData.whitelist) ? importedData.whitelist : [];
+        const suspiciousScripts = Array.isArray(importedData.suspiciousScripts) ? importedData.suspiciousScripts : [];
+  
+        chrome.storage.local.set({ whitelist, suspiciousScripts }, () => {
+          alert("Import successful!");
+          loadWhitelist(); // Refresh UI
+        });
+      } catch (e) {
+        alert("Invalid file format.");
+      }
+    };
+    reader.readAsText(file);
+  });
+  
