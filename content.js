@@ -37,9 +37,3 @@ function isSuspicious(scriptContent) {
   }
   
   window.addEventListener("DOMContentLoaded", scanScripts);
-  // Example: Later this can load from storage
-document.addEventListener("DOMContentLoaded", () => {
-    const log = document.getElementById("log-container");
-    log.textContent = "No suspicious scripts logged yet.";
-  });
-  
