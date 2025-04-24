@@ -5,8 +5,6 @@
     "description": "Detects and blocks suspicious inline scripts in web pages.",
     "permissions": [
       "scripting",
-      "webRequest",
-      "webRequestBlocking",
       "tabs",
       "storage"
     ],
