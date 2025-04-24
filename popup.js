@@ -99,4 +99,20 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("optionsBtn").addEventListener("click", () => {
     chrome.runtime.openOptionsPage();
   });
+  // Apply Dark Mode to the Popup
+chrome.storage.local.get("darkMode", (data) => {
+    const isDark = data.darkMode || false;
+    toggleDarkMode(isDark);
+  });
+  function toggleDarkMode(isDark) {
+    const body = document.body;
+    
+    // Apply the data-theme attribute to switch between dark and light
+    if (isDark) {
+      body.setAttribute("data-theme", "dark");
+    } else {
+      body.setAttribute("data-theme", "light");
+    }
   
+    chrome.storage.local.set({ darkMode: isDark });
+  }
