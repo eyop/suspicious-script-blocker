@@ -96,4 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadLogs();
     loadWhitelist();
   });
+  document.getElementById("optionsBtn").addEventListener("click", () => {
+    chrome.runtime.openOptionsPage();
+  });
   
