@@ -126,3 +126,11 @@ chrome.storage.local.get("darkMode", (data) => {
   darkModeToggle.checked = isDark;
   toggleDarkMode(isDark);
 });
+document.getElementById("clearLogsBtn").addEventListener("click", () => {
+    if (confirm("Are you sure you want to clear all script logs?")) {
+      chrome.storage.local.remove("suspiciousScripts", () => {
+        alert("All logs cleared.");
+      });
+    }
+  });
+  
