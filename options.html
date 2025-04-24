@@ -44,6 +44,7 @@
   </style>
 </head>
 <body>
+    
   <h1>Whitelist Domains</h1>
   <input type="text" id="domainInput" placeholder="e.g. example.com" />
   <button id="addBtn">Add Domain</button>
@@ -54,7 +55,23 @@
   <button id="exportBtn">Export Data</button>
   <label for="importInput">Import Backup File:</label>
   <input type="file" id="importInput" accept=".json" title="Choose a JSON file to import backup data" />
-  
+  <button id="clearLogsBtn">Clear Logs</button>
+
+  <hr style="margin: 20px 0;" />
+<h2>Appearance</h2>
+<label for="darkModeToggle">
+  Dark Mode:
+  <input type="checkbox" id="darkModeToggle" />
+
+  <hr style="margin: 20px 0;" />
+<label for="disableBlockingToggle">
+  Disable Script Blocking:
+  <input type="checkbox" id="disableBlockingToggle" />
+</label>
+
+</label>
+
+
   <script src="options.js"></script>
 </body>
 </html>
