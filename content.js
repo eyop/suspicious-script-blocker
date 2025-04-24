@@ -13,7 +13,13 @@ function isSuspicious(scriptContent) {
   
     return suspiciousPatterns.some((pattern) => pattern.test(scriptContent));
   }
-  
+  function getDomain(url) {
+    try {
+      return new URL(url).hostname.replace(/^www\./, "");
+    } catch {
+      return "";
+    }
+    }  
   function scanScripts() {
     const scripts = document.querySelectorAll("script:not([src])");
   
