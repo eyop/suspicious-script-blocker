@@ -21,6 +21,15 @@ function isSuspicious(scriptContent) {
     }
     }  
   function scanScripts() {
+
+    chrome.storage.local.get("whitelist", (data) => {
+        const whitelist = data.whitelist || [];
+        const currentDomain = getDomain(window.location.href);
+    
+        if (whitelist.includes(currentDomain)) {
+          console.log(`✅ Whitelisted: ${currentDomain}`);
+          return;
+        }
     const scripts = document.querySelectorAll("script:not([src])");
   
     scripts.forEach((script) => {
@@ -40,6 +49,8 @@ function isSuspicious(scriptContent) {
         });
       }
     });
-  }
+
+  });
+    }
   
   window.addEventListener("DOMContentLoaded", scanScripts);
