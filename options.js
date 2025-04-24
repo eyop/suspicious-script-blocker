@@ -84,4 +84,45 @@ document.getElementById("exportBtn").addEventListener("click", () => {
     };
     reader.readAsText(file);
   });
-  
+  const darkModeToggle = document.getElementById("darkModeToggle");
+
+function toggleDarkMode(isDark) {
+  if (isDark) {
+    document.body.style.backgroundColor = "#121212";
+    document.body.style.color = "white";
+    document.querySelector("h1").style.color = "white";
+    document.querySelectorAll("button").forEach((btn) => {
+      btn.style.backgroundColor = "#333";
+      btn.style.color = "white";
+    });
+    document.querySelectorAll("input").forEach((input) => {
+      input.style.backgroundColor = "#333";
+      input.style.color = "white";
+    });
+  } else {
+    document.body.style.backgroundColor = "#ffffff";
+    document.body.style.color = "#000000";
+    document.querySelector("h1").style.color = "#000000";
+    document.querySelectorAll("button").forEach((btn) => {
+      btn.style.backgroundColor = "#e74c3c";
+      btn.style.color = "white";
+    });
+    document.querySelectorAll("input").forEach((input) => {
+      input.style.backgroundColor = "#f0f0f0";
+      input.style.color = "#000000";
+    });
+  }
+}
+
+darkModeToggle.addEventListener("change", () => {
+  const isDark = darkModeToggle.checked;
+  chrome.storage.local.set({ darkMode: isDark });
+  toggleDarkMode(isDark);
+});
+
+// Load dark mode setting
+chrome.storage.local.get("darkMode", (data) => {
+  const isDark = data.darkMode || false;
+  darkModeToggle.checked = isDark;
+  toggleDarkMode(isDark);
+});
