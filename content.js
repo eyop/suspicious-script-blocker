@@ -80,5 +80,21 @@ function isSuspicious(scriptContent) {
 
   });
     }
+    chrome.storage.local.get("disableBlocking", (data) => {
+        const disableBlocking = data.disableBlocking || false;
+      
+        if (disableBlocking) return; // Skip blocking if disabled
+      
+        // Existing script-blocking logic here...
+      });
+    
+// Allow users to toggle blocking on/off
+chrome.storage.local.get("disableBlocking", (data) => {
+    document.getElementById("disableBlockingToggle").checked = data.disableBlocking || false;
+  });
   
+  document.getElementById("disableBlockingToggle").addEventListener("change", (event) => {
+    const disableBlocking = event.target.checked;
+    chrome.storage.local.set({ disableBlocking });
+  });  
   window.addEventListener("DOMContentLoaded", scanScripts);
