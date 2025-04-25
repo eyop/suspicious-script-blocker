@@ -5,10 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Script Blocker Options</title>
   <style>
+    :root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --danger-color: #e74c3c;
+}
+
     body {
       font-family: sans-serif;
       padding: 20px;
     }
+    [data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #1e90ff;
+  --secondary-color: #adb5bd;
+  --danger-color: #ff6b6b;
+}
 
     h1 {
       font-size: 20px;
@@ -70,6 +85,50 @@ body[data-theme="light"] .log-snippet {
 body[data-theme="light"] .log-time {
   color: #777; /* Darker gray for time */
 }
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--secondary-color);
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(20px);
+}
   </style>
 </head>
 <body>
@@ -87,11 +146,17 @@ body[data-theme="light"] .log-time {
   <button id="clearLogsBtn">Clear Logs</button>
 
   <hr style="margin: 20px 0;" />
-<h2>Appearance</h2>
+<!-- <h2>Appearance</h2>
 <label for="darkModeToggle">
   Dark Mode:
-  <input type="checkbox" id="darkModeToggle" />
-
+  <input type="checkbox" id="darkModeToggle" /> -->
+<h2>Appearance</h2>
+  <label class="toggle-switch">
+    <label for="darkModeToggle">
+      <input type="checkbox" id="darkModeToggle" title="Toggle dark mode">
+      <span class="toggle-slider"></span>
+    </label>
+  </label>
   <hr style="margin: 20px 0;" />
 <label for="disableBlockingToggle">
   Disable Script Blocking:
