@@ -1,14 +1,48 @@
+/* Modern Font */
 body {
-    font-family: Arial, sans-serif;
-    width: 300px;
-    padding: 10px;
-  }
-  
-  h1 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
+  font-family: 'Inter', sans-serif;
+  width: 320px;
+  padding: 15px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+  /* Light Theme */
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --danger-color: #e74c3c;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #1e90ff;
+  --secondary-color: #adb5bd;
+  --danger-color: #ff6b6b;
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
   #log-container {
     font-size: 13px;
     color: #333;
@@ -90,32 +124,73 @@ body {
     color: red;
     cursor: pointer;
   }
-    /* Dark Mode Styles */
-body[data-theme="dark"] {
-    background-color: #121212;
+  #clear-log {
+    background-color: var(--danger-color);
     color: white;
   }
   
-  body[data-theme="dark"] .log-snippet {
-    background-color: #333;
+  #add-whitelist {
+    background-color: var(--primary-color);
     color: white;
   }
   
-  body[data-theme="dark"] .log-time {
-    color: #bbb; /* Lighter gray for time */
+  #whitelist-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
   }
   
-  /* Light Mode Styles */
-  body[data-theme="light"] {
-    background-color: #ffffff;
-    color: #000000;
+  .remove-whitelist {
+    color: var(--danger-color);
+    cursor: pointer;
   }
   
-  body[data-theme="light"] .log-snippet {
-    background-color: #f9f9f9;
-    color: #000000;
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
   }
   
-  body[data-theme="light"] .log-time {
-    color: #777; /* Darker gray for time */
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--secondary-color);
+    transition: 0.4s;
+    border-radius: 20px;
+  }
+  
+  .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .toggle-slider {
+    background-color: var(--primary-color);
+  }
+  
+  input:checked + .toggle-slider:before {
+    transform: translateX(20px);
   }
