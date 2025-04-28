@@ -110,3 +110,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Chrome Extensions Documentation**: For providing extensive documentation on Chrome extension APIs.
 - **StackOverflow**: For the numerous solutions and discussions that helped during development.
 - **Dark Mode Design**: Inspired by the user preference for dark mode in modern applications.
+- 
